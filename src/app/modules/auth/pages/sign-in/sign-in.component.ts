@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
 import { Router, RouterLink } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { ButtonComponent } from '../../../../core/components/button/button.component';
 
 @Component({
   selector: 'app-sign-in',

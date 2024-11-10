@@ -1,4 +1,4 @@
-import { MenuItem } from '../models/menu.model';
+import { MenuItem } from '../models/ui models/menu.model';
 
 export class Menu {
   public static pages: MenuItem[] = [
@@ -7,7 +7,7 @@ export class Menu {
       separator: false,
       items: [
         {
-          icon: 'fa-solid fa-people-group',
+          icon: 'fa-solid fa-people-group text-xl mr-4',
           label: 'Users',
           route: '/users',
         },

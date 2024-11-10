@@ -13,7 +13,7 @@
         <div
           [ngClass]="item.active && !menuService.showSideBar ? 'text-primary' : 'text-muted-foreground/50'"
           class="pointer-events-none absolute m-2">
-          <svg-icon src="{{ item.icon }}" [svgClass]="'h-5 w-5'"> </svg-icon>
+          <i [class]="item.icon"> </i>
         </div>
 
         <!-- Condition -->
@@ -26,7 +26,8 @@
         <ng-template #parentMenu let-item="item">
           <div
             routerLink="{{ item.route }}"
-            class="flex h-9 cursor-pointer items-center justify-start rounded text-muted-foreground hover:bg-card hover:text-foreground">
+            class="flex h-9 cursor-pointer items-center justify-start rounded text-muted-foreground hover:bg-card hover:text-foreground"
+            [class.bg-card]="pageIsActive(item.route)">
             <a
               routerLinkActive="text-primary"
               class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">

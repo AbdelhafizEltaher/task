@@ -1,0 +1,26 @@
+<div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+  <div class="mb-4 flex items-center justify-between">
+    <div class="flex-col items-center">
+      <span class="text-xs text-muted-foreground">Total Number Of Records {{totalCount}}</span>
+    </div>
+  </div>
+
+  <div class="relative overflow-x-auto">
+    <table class="w-full table-auto">
+      <thead class="text-xs uppercase text-muted-foreground">
+        <tr>
+          @for (item of tableHeader; track $index) {
+          <th class="py-3 text-left">{{ item }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr  class="border-b border-dashed border-border hover:bg-card">
+          @for (item of tableData; track $index) {
+          <th class="py-3 text-left">{{ item }}</th>
+          }
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

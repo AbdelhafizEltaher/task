@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { ClickOutsideDirective } from '../../../../../shared/directives/click-outside.directive';
+import { ClickOutsideDirective } from '../../../../../core/directives/click-outside.directive';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { ThemeService } from '../../../../../core/services/theme.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ThemeService } from 'src/app/core/services/uiServices/theme.service';
+import { BasicsConstance } from 'src/app/core/constants/basics-constance';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-menu',
   templateUrl: './profile-menu.component.html',
   styleUrls: ['./profile-menu.component.scss'],
   standalone: true,
-  imports: [ClickOutsideDirective, NgClass, RouterLink, AngularSvgIconModule],
+  imports: [ClickOutsideDirective, NgClass, AngularSvgIconModule],
   animations: [
     trigger('openClose', [
       state(
@@ -36,25 +38,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ],
 })
 export class ProfileMenuComponent implements OnInit {
+  _authServices = inject(AuthService);
   public isOpen = false;
-  public profileMenu = [
-    {
-      title: 'Your Profile',
-      icon: './assets/icons/heroicons/outline/user-circle.svg',
-      link: '/profile',
-    },
-    {
-      title: 'Settings',
-      icon: './assets/icons/heroicons/outline/cog-6-tooth.svg',
-      link: '/settings',
-    },
-    {
-      title: 'Log out',
-      icon: './assets/icons/heroicons/outline/logout.svg',
-      link: '/auth',
-    },
-  ];
-
   public themeColors = [
     {
       name: 'base',
@@ -107,5 +92,9 @@ export class ProfileMenuComponent implements OnInit {
     this.themeService.theme.update((theme) => {
       return { ...theme, color: color };
     });
+  }
+
+  singOut() {
+    this._authServices.logout(localStorage.getItem(BasicsConstance.USER_ID) ?? '');
   }
 }

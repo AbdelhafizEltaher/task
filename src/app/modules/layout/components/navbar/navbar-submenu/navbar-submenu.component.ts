@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { SubMenuItem } from 'src/app/core/models/menu.model';
+import { SubMenuItem } from 'src/app/core/models/ui models/menu.model';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { NgFor, NgTemplateOutlet, NgIf } from '@angular/common';
