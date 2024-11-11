@@ -5,6 +5,7 @@ import { SidebarSubmenuComponent } from '../sidebar-submenu/sidebar-submenu.comp
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
+import { TranslationService } from 'src/app/core/i18n';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -24,16 +25,18 @@ import { NgFor, NgClass, NgTemplateOutlet, NgIf } from '@angular/common';
   ],
 })
 export class SidebarMenuComponent implements OnInit {
-  _router = inject(Router);
-  constructor(public menuService: MenuService) {}
-
+  _translate = inject(TranslationService);
+  _router = inject(Router)
+  lang: string = '';
+  constructor(public menuService: MenuService) {
+    this.lang = this._translate.getSelectedLanguage();
+  }
   public toggleMenu(subMenu: SubMenuItem) {
     this.menuService.toggleMenu(subMenu);
   }
-
   ngOnInit(): void {}
 
-  pageIsActive(route: string) {
+  pageIsActive(route: any) {    
     return this._router.url.includes(route);
   }
 }

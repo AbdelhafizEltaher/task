@@ -11,9 +11,10 @@
       <div (click)="toggleMenu(item)" class="group relative text-muted-foreground">
         <!-- Icon -->
         <div
-          [ngClass]="item.active && !menuService.showSideBar ? 'text-primary' : 'text-muted-foreground/50'"
-          class="pointer-events-none absolute m-2">
-          <i [class]="item.icon"> </i>
+          [ngClass]="pageIsActive(item.route) && !menuService.showSideBar ? 'text-black' : 'text-[#444343]'"
+          [class.!text-white]="pageIsActive(item.route)"
+          class="pointer-events-none absolute m-2 group-hover:text-white">
+          <i [class]="item.icon + 'mx-3'"> </i>
         </div>
 
         <!-- Condition -->
@@ -26,11 +27,12 @@
         <ng-template #parentMenu let-item="item">
           <div
             routerLink="{{ item.route }}"
-            class="flex h-9 cursor-pointer items-center justify-start rounded text-muted-foreground hover:bg-card hover:text-foreground"
-            [class.bg-card]="pageIsActive(item.route)">
+            [class.bg-primary]="pageIsActive(item.route)"
+            class="flex h-9 cursor-pointer flex-row-reverse items-center justify-end rounded text-[#444343] hover:bg-primary">
             <a
+              [class.!text-white]="pageIsActive(item.route)"
               routerLinkActive="text-primary"
-              class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
+              class="mx-10 text-[18px] font-bold text-[#444343] focus:outline-none group-hover:text-white">
               {{ item.label }}
             </a>
           </div>
@@ -38,9 +40,8 @@
 
         <!-- Workaround:: Disable routerLink -->
         <ng-template #childMenu let-item="item">
-          <div class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-card">
-            <a
-              class="ml-10 truncate text-xs font-semibold tracking-wide text-muted-foreground focus:outline-none group-hover:text-foreground">
+          <div class="flex h-9 cursor-pointer items-center justify-start rounded hover:bg-primary">
+            <a class="mx-10 p-2 text-[20px] font-bold text-[#444343] focus:outline-none">
               {{ item.label }}
             </a>
           </div>
@@ -49,15 +50,21 @@
         <!-- Arrow Icon -->
         <button
           *ngIf="item.children"
-          [ngClass]="{ hidden: !menuService.showSideBar, 'rotate-90': item.expanded }"
-          class="pointer-events-none absolute top-1 right-0 flex items-center p-1 text-muted-foreground/50 transition-all duration-500">
+          class="pointer-events-none absolute top-1 flex items-center p-1 text-[#444343] transition-all group-hover:text-white"
+          [ngClass]="{
+            'right-0': lang === 'en',
+            'left-0': lang === 'ar',
+            hidden: !menuService.showSideBar,
+            'rotate-90': item.expanded
+          }">
           <svg-icon src="assets/icons/heroicons/solid/chevron-right.svg" [svgClass]="'h-5 w-5'"> </svg-icon>
         </button>
 
         <!-- Tooltip -->
         <div class="fixed w-full" *ngIf="!menuService.showSideBar">
           <span
-            class="z-1 absolute left-14 -top-[34px] w-auto min-w-max origin-left scale-0 rounded-md bg-foreground p-2 text-xs font-bold text-background shadow-md transition-all duration-200 group-hover:scale-100">
+            class="z-1 absolute  -top-[34px] w-auto min-w-max origin-left scale-0 rounded-md bg-foreground p-2 text-xs font-bold text-background shadow-md transition-all duration-200 group-hover:scale-100"
+            [class.left-14]="lang==='en'" [class.right-14]="lang==='ar'">
             {{ item.label }}
           </span>
         </div>

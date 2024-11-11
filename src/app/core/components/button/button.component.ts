@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { cx } from '../../utils/ckassnames';
 
@@ -26,6 +26,9 @@ export class ButtonComponent implements OnInit {
   full = input(false, {
     transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : value),
   });
+
+  @Input() disabled : boolean = false;
+  @Input() type : 'button' | 'submit' | 'reset' = 'button';
 
   @Output() buttonClick = new EventEmitter<void>();
 

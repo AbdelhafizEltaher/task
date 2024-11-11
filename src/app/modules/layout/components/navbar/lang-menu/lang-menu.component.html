@@ -1,0 +1,35 @@
+<div class="relative">
+  <button (click)="toggleLanguageMenu()" class="relative flex rounded-full text-sm" type="button">
+    <span class="sr-only">Open user menu</span>
+    <div class="flex items-center justify-center" clickOutside (clickOutside)="openLangMenu = false">
+      <img
+        class="h-[30px] w-[30px] rounded-full"
+        [src]="
+          lang === 'ar'
+            ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Egypt.svg/800px-Flag_of_Egypt.svg.png?20231030035225'
+            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/640px-Flag_of_the_United_Kingdom_%281-2%29.svg.png'
+        "
+        alt="" />
+
+      <p class="mx-2 text-[18px] font-semibold text-muted-foreground">{{ lang === 'en' ? 'English' : 'العربية' }}</p>
+    </div>
+  </button>
+  @if( openLangMenu){
+  <div
+    [@openClose]="openLangMenu ? 'open' : 'closed'"
+    [ngClass]="{'right-0': lang === 'en' , 'left-0': lang === 'ar' , 'origin-top-right': lang === 'en' , 'origin-top-left': lang === 'ar' ,  }"
+    class="absolute z-20 mt-2 w-36 transform rounded-md bg-background py-4 shadow-custom ring-1 ring-transparent ring-opacity-5 transition focus:outline-none">
+    <ul class="mx-4 flex flex-col">
+      @for (item of langMenu; track $index) {
+      <li
+        (click)="changeLang()"
+        :key="$index"
+        class="inline-flex cursor-pointer justify-center items-center gap-2 rounded-md px-3 py-2 text-[18px] font-semibold text-muted-foreground hover:bg-card hover:text-primary">
+        <img [src]="item.icon" class="h-6 w-6 rounded-full text-black" alt="" />
+        {{ item.title }}
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>

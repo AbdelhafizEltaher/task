@@ -1,7 +1,7 @@
 <div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
   <div class="mb-4 flex items-center justify-between">
     <div class="flex-col items-center">
-      <span class="text-xs text-muted-foreground">Total Number Of Records {{totalCount}}</span>
+      <span class="text-xs text-muted-foreground">Total Number Of Records {{ totalCount }}</span>
     </div>
   </div>
 
@@ -9,17 +9,69 @@
     <table class="w-full table-auto">
       <thead class="text-xs uppercase text-muted-foreground">
         <tr>
-          @for (item of tableHeader; track $index) {
-          <th class="py-3 text-left">{{ item }}</th>
-          }
+          <ng-container *ngFor="let item of tableHeader; let i = index">
+            <th class="py-3 text-center">{{ item.header }}</th>
+          </ng-container>
+          <th class="py-3 text-center">Status</th>
+          <th class="py-3 text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr  class="border-b border-dashed border-border hover:bg-card">
-          @for (item of tableData; track $index) {
-          <th class="py-3 text-left">{{ item }}</th>
-          }
-        </tr>
+        <ng-container *ngFor="let row of tableData; let rowIndex = index">
+          <tr class="border-b border-dashed border-border">
+            <ng-container *ngFor="let col of tableHeader; let colIndex = index">
+              <td class="text-dark py-3 text-center">{{ row[col.field] }}</td>
+            </ng-container>
+            <td class="text-dark py-3 text-center">
+              <span
+                class="p-2 px-4 text-white rounded-lg"
+                [class.bg-green-300]="row.isActive"
+                [class.bg-red-300]="!row.isActive">
+                {{ row.isActive ? 'Active' : 'Not Active' }}</span
+              >
+            </td>
+
+            @if(enableAction){
+            <td class="my-2 text-center">
+              <div class="flex items-center justify-center">
+                @if(!row.isActive){
+                <div
+                  pTooltip="Activate"
+                  tooltipPosition="bottom"
+                  class="mr-2 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-blue-400 bg-blue-400">
+                  <i class="pi pi-check text-sm text-white" (click)="onTogglePopUp($event, row)"></i>
+                </div>
+                } @if(row.isActive){
+                <div
+                  pTooltip="DeActivate"
+                  tooltipPosition="bottom"
+                  class="mr-2 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-red-400 bg-red-400">
+                  <i class="pi pi-times text-sm text-white" (click)="onTogglePopUp($event, row)"></i>
+                </div>
+                }
+                <div
+                  pTooltip="Delete"
+                  tooltipPosition="bottom"
+                  class="mr-2 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-red-400 bg-red-400">
+                  <i class="pi pi-trash text-sm text-white" (click)="onDeletePopUp($event, row)"></i>
+                </div>
+                <div
+                  pTooltip="Edit"
+                  tooltipPosition="bottom"
+                  class="mr-2 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-yellow-400 bg-yellow-400">
+                  <i class="pi pi-pencil text-sm text-white" (click)="onOpenEditModel(row)"></i>
+                </div>
+                <div
+                  pTooltip="View"
+                  tooltipPosition="bottom"
+                  class="mr-2 flex h-[35px] w-[35px] cursor-pointer items-center justify-center rounded-full border border-green-400 bg-green-400">
+                  <i class="pi pi-eye text-sm text-white" (click)="onOpenViewModel(row)"></i>
+                </div>
+              </div>
+            </td>
+            }
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

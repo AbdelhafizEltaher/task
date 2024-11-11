@@ -9,6 +9,4 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderPageComponent {
 @Input() title: string = '';
-@Input() addText: string = '';
-@Input() hasFilter:boolean = true
 }

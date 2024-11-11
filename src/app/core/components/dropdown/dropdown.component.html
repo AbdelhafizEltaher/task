@@ -1,0 +1,22 @@
+<div class="w-full" [formGroup]="parentForm">
+  @if(label){
+  <label [for]="label" class="border-border text-[16px] text-black mb-3">
+    {{ label }}
+  </label>
+  }
+  <p-dropdown
+  [formControlName]="inputName"
+  [options]="options"
+  optionLabel="name"
+  optionValue="id"
+  [placeholder]="placeholder"
+  [filter]="true"
+  [showClear]="true"
+  styleClass="w-full bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:ring focus:ring-blue-300"
+></p-dropdown>
+
+    <app-error       
+    [control]="parentForm.controls[inputName]"
+    [validation]="validation"
+    [name]="name" />
+</div>

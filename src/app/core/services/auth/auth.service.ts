@@ -3,39 +3,40 @@ import { CommonHttpService } from '../shardServices/common.service';
 import { ILoginData } from '../../models/auth/ILoginData';
 import { HttpPaths } from '../../constants/http-paths';
 import { environment } from 'src/environments/environment';
-import { ILoginResponseInterface } from '../../models/auth/ILoginResponseInterface';
-import { catchError, map } from 'rxjs';
+import { ILoginResponse } from '../../models/auth/ILoginResponse';
+import { map, Observable } from 'rxjs';
 import { BasicsConstance } from '../../constants/basics-constance';
 import { Router } from '@angular/router';
+import { IGeneralResponse } from '../../models/shard/IGeneralResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  CommonHttp = inject(CommonHttpService);
-  router = inject(Router);
+  private _commonHttp = inject(CommonHttpService);
+  private _router = inject(Router);
   constructor() {}
 
   isLoggedIn(): boolean {
     return localStorage.getItem(BasicsConstance.USER_TOKEN) ? true : false;
   }
 
-  Login(LoginData: ILoginData) {
-    return this.CommonHttp.CommonPostRequests(LoginData, `${environment.baseUrl + HttpPaths.API_LOGIN}`);
+  Login(LoginData: ILoginData): Observable<ILoginResponse> {
+    return this._commonHttp.CommonPostRequests(LoginData, `${environment.baseUrl + HttpPaths.API_LOGIN}`).pipe(
+      map((res) => {
+        if (res.isSuccess) {
+          return res.data;
+        }
+      }),
+    );
   }
 
   logout(userId: string) {
     if (!userId || userId === '') {
       return;
     }
-    return this.CommonHttp.CommonPostRequests(null, `${environment.baseUrl + HttpPaths.API_LOGOUT}${userId}`).subscribe(
-      {
-        next: (res) => {
-          localStorage.removeItem(BasicsConstance.USER_ID);
-          localStorage.removeItem(BasicsConstance.USER_TOKEN);
-          this.router.navigate(['/auth/login']);
-        },
-      },
-    );
+    localStorage.removeItem(BasicsConstance.USER_ID);
+    localStorage.removeItem(BasicsConstance.USER_TOKEN);
+    this._router.navigate(['/auth/sing-out']);
   }
 }

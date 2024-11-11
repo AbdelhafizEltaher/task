@@ -34,7 +34,7 @@ export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
           toast.error("Something went wrong");
         }
       }
-      return throwError('');
+      return throwError(error);
     }),
   );
 };

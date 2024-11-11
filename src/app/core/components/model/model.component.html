@@ -1,0 +1,22 @@
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  [position]="position"
+  [style]="sidebarStyle"
+  [baseZIndex]="10000"
+  [attr.modelData]="modelData"
+  [dismissible]="false"
+  [modal]="true"
+  (onHide)="closeSidebar({ data: null })"
+>
+  <ng-template pTemplate="header">
+    <div class="justify-start items-center flex">
+      <span class="text-xl font-semibold">{{ headerText }}</span>
+    </div>
+  </ng-template>
+
+  <ng-container *ngIf="component">
+    <ng-container *ngComponentOutlet="component; injector: componentInjector"></ng-container>
+  </ng-container>
+
+  <ng-content></ng-content>
+</p-sidebar>

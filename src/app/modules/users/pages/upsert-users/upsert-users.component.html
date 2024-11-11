@@ -1,1 +1,51 @@
-<p>upsert-users works!</p>
+<form [formGroup]="userForm" (ngSubmit)="submit()" class="h-full">
+
+
+    <div class="grid lg:grid-cols-2  grid-cols-1 gap-4 ">
+        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="First Name" name="firstName"
+            inputName="firstName" [parentForm]="userForm" placeholder="please insert your First Name" />
+
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Last Name" name="lastName"
+            inputName="lastName" [parentForm]="userForm" placeholder="please insert your Last Name" />
+
+        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="User Name" name="userName"
+            inputName="userName" [parentForm]="userForm" placeholder="please insert your UserName" />
+
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH , BasicConstants.INVALID_EMAIL]" label="Email" name="email"
+            inputName="email" [parentForm]="userForm" placeholder="please insert your Email" />
+
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH ]" label="Phone Number" name="phoneNumber"
+            inputName="phoneNumber" [parentForm]="userForm" placeholder="please insert your Phone Number" />
+            @if(!CurrentUser || !CurrentUser.id){
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Password" name="password"
+            inputName="password" [parentForm]="userForm" placeholder="please insert your Password" />
+            }
+            <app-dropdown [options]="listOfCountries" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Country" name="Country"
+            inputName="country_Id" [parentForm]="userForm" placeholder="please Select Your Country" />
+
+            <app-dropdown [options]="listOfNationalities" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Nationality" name="Nationality"
+            inputName="nationality_Id" [parentForm]="userForm" placeholder="please Select Your Nationality" />
+
+
+    </div>
+
+
+
+
+
+        @if (errors) {
+            <div class="fixed bottom-20 flex justify-end mt-auto gap-4">
+            <span class="bg-red-500 rounded-lg px-3 py-2 text-white w-full">{{errors}}</span>
+        </div>
+        }
+
+       
+    <div class="fixed bottom-4 flex justify-end mt-auto gap-4">
+
+
+        <app-button type="submit" [disabled]="userForm.invalid" full impact="light" tone="primary" shape="rounded" size="medium">Save</app-button>
+        <app-button type="submit" (buttonClick)="closeSidebar()"  full impact="light" tone="light" shape="rounded" size="medium">Cancel</app-button>
+        </div>
+
+
+</form>

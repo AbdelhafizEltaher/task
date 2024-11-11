@@ -7,6 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { ThemeService } from 'src/app/core/services/uiServices/theme.service';
 import { BasicsConstance } from 'src/app/core/constants/basics-constance';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { TranslationService } from 'src/app/core/i18n';
 
 @Component({
   selector: 'app-profile-menu',
@@ -38,8 +39,12 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   ],
 })
 export class ProfileMenuComponent implements OnInit {
-  _authServices = inject(AuthService);
   public isOpen = false;
+  _translate = inject(TranslationService);
+  private _authServices = inject(AuthService);
+  lang: string = '';
+  public profileMenu: any[] = [];
+
   public themeColors = [
     {
       name: 'base',
@@ -73,7 +78,34 @@ export class ProfileMenuComponent implements OnInit {
 
   public themeMode = ['light', 'dark'];
 
-  constructor(public themeService: ThemeService) {}
+  constructor(public themeService: ThemeService) {
+    this.lang = this._translate.getSelectedLanguage();
+    this.profileMenu = [
+      {
+        title: 'Your Profile',
+        icon: './assets/icons/heroicons/outline/user-circle.svg',
+        link: '/profile',
+      },
+      {
+        title: 'Settings',
+        icon: './assets/icons/heroicons/outline/cog-6-tooth.svg',
+        link: '/settings',
+      },
+      {
+        title: this.lang == 'en' ? 'Arabic ' : 'English',
+        icon:
+          this.lang == 'en'
+            ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Flag_of_Egypt.svg/800px-Flag_of_Egypt.svg.png?20231030035225'
+            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/640px-Flag_of_the_United_Kingdom_%281-2%29.svg.png',
+        hasAction: true,
+      },
+      {
+        title: 'Log out',
+        icon: './assets/icons/heroicons/outline/logout.svg',
+        link: '/auth',
+      },
+    ];
+  }
 
   ngOnInit(): void {}
 
@@ -94,7 +126,10 @@ export class ProfileMenuComponent implements OnInit {
     });
   }
 
-  singOut() {
-    this._authServices.logout(localStorage.getItem(BasicsConstance.USER_ID) ?? '');
+  changeLang() {
+    this._translate.changeLang(this.lang == 'en' ? 'ar' : 'en');
+  }
+  logout(){
+    this._authServices.logout(localStorage.getItem(BasicsConstance.USER_ID) || '');
   }
 }

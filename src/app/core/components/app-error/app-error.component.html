@@ -1,0 +1,19 @@
+@for (item of validation; track $index) {
+<ng-container>
+  @if (control.hasError(item) && control.invalid && (control.touched || control.dirty)) {
+  <ng-container>
+    <div class="p-2 text-red-800">
+      @if(item=== BasicConstants.REQUIRED) {
+      <span role="alert"> {{ name }} is Required </span>
+      } @else if (item===BasicConstants.MINLENGTH) {
+      <span role="alert"> {{ name }} exceed min Length</span>
+      } @else if (item===BasicConstants.MAXLENGTH) {
+      <span role="alert"> {{ name }} exceed max Length</span>
+      } @else if (item===BasicConstants.INVALID_EMAIL) {
+      <span role="alert"> Invalid Email Address</span>
+      }
+    </div>
+  </ng-container>
+  }
+</ng-container>
+}

@@ -1,6 +1,6 @@
 <div class="relative bg-background">
   <div class="mx-auto px-5">
-    <div class="flex items-center justify-between py-3.5 md:justify-start">
+    <div class="flex items-center justify-between py-2 md:justify-start">
       <!-- Mobile Navigation Menu Button-->
       <div class="sm:order-1 md:hidden">
         <button
@@ -14,16 +14,8 @@
         </button>
       </div>
 
-      <!-- Logo -->
-      <div class="flex items-center justify-start sm:order-2 md:mr-10 lg:hidden">
-        <a class="flex items-center justify-center rounded bg-primary p-2 focus:outline-none focus:ring-1">
-          <svg-icon src="assets/icons/logo.svg"></svg-icon>
-        </a>
-        <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> HR Task </b>
-      </div>
-
-      <!-- Profile menu -->
       <div class="items-center justify-end sm:order-4 md:flex md:flex-1 lg:w-0">
+        <lang-menu></lang-menu>
         <app-profile-menu></app-profile-menu>
       </div>
     </div>
