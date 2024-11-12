@@ -10,7 +10,7 @@ import { TranslationService } from 'src/app/core/i18n';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   standalone: true,
-  imports: [SidebarComponent, NavbarComponent, RouterOutlet, FooterComponent],
+  imports: [SidebarComponent, NavbarComponent, RouterOutlet, FooterComponent  ],
 })
 export class LayoutComponent implements OnInit {
   private mainContent: HTMLElement | null = null;

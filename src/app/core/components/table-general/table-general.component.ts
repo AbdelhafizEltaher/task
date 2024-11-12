@@ -17,6 +17,9 @@ export class TableGeneralComponent {
   @Input() tableHeader: {field : string , header : string}[] = [];
   @Input() totalCount : number = 0;
   @Input() enableAction : boolean = false
+  @Input() enableEdit : boolean = false
+  @Input() enableDelete : boolean = false
+  @Input() enableToggle : boolean = false
   @Output() togglePopUp = new EventEmitter<{ event: Event; row: any }>();
   @Output() deletePopUp = new EventEmitter<{ event: Event; row: any }>();
   @Output() openEditModel = new EventEmitter<any>();

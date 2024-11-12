@@ -9,6 +9,8 @@
     [type]="type"
     [name]="name"
     [placeholder]="placeholder"
-    class="h-[40px] w-full rounded-md  border border-gray-300 px-2 !outline-none ring-0"
-    [(ngModel)]="modelValue" />
+    class="h-[45px] w-full rounded-md  border border-gray-300 px-2 !outline-none ring-0"
+    [(ngModel)]="modelValue"
+    (ngModelChange)="modelValueChange.emit($event)"
+    />
 </div>

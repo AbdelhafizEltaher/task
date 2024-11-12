@@ -1,6 +1,6 @@
-<div class="w-full" [formGroup]="parentForm">
+<div class="w-full flex flex-col justify-center "  [formGroup]="parentForm">
   @if(label){
-  <label [for]="label" class="border-border text-[16px] text-black mb-3">
+  <label [for]="label"  class="text-[16px] text-black mb-1">
     {{ label }}
   </label>
   }
@@ -10,7 +10,7 @@
     [type]="type"
     [name]="name"
     [placeholder]="placeholder"
-    class="h-[40px] w-full rounded-md !outline-none  border border-gray-300 px-2 ring-0"
+    class="h-[45px] w-full rounded-md !outline-none  border border-gray-300 px-2 ring-0"
     [formControlName]="inputName"
     [ngClass]="{
       'border-red-600 focus:border-red-600': 

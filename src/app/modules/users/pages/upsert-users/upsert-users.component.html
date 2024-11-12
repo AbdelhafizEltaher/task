@@ -2,29 +2,29 @@
 
 
     <div class="grid lg:grid-cols-2  grid-cols-1 gap-4 ">
-        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="First Name" name="firstName"
-            inputName="firstName" [parentForm]="userForm" placeholder="please insert your First Name" />
+        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.First_Name' | translate}}" name="{{'Forms.First_Name' | translate}}" 
+            inputName="firstName" [parentForm]="userForm" placeholder="{{ 'Forms.First_Name_Placeholder' | translate}}"  />
 
-            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Last Name" name="lastName"
-            inputName="lastName" [parentForm]="userForm" placeholder="please insert your Last Name" />
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.Last_Name' | translate}}" name="{{'Forms.Last_Name' | translate}}"
+            inputName="lastName" [parentForm]="userForm" placeholder="{{ 'Forms.Last_Name_Placeholder' | translate}}" />
 
-        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="User Name" name="userName"
-            inputName="userName" [parentForm]="userForm" placeholder="please insert your UserName" />
+        <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.User_Name' | translate}}" name="{{'Forms.User_Name' | translate}}"
+            inputName="userName" [parentForm]="userForm" placeholder="{{ 'Forms.User_Name_Placeholder' | translate}}" />
 
-            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH , BasicConstants.INVALID_EMAIL]" label="Email" name="email"
-            inputName="email" [parentForm]="userForm" placeholder="please insert your Email" />
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH , BasicConstants.INVALID_EMAIL]" label="{{'Forms.Email' | translate}}" name="{{'Forms.Email' | translate}}"
+            inputName="email" [parentForm]="userForm" placeholder="{{ 'Forms.Email_Placeholder' | translate}}" />
 
-            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH ]" label="Phone Number" name="phoneNumber"
-            inputName="phoneNumber" [parentForm]="userForm" placeholder="please insert your Phone Number" />
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH ]" label="{{'Forms.Phone_Number' | translate}}" name="{{'Forms.Phone_Number' | translate}}"
+            inputName="phoneNumber" [parentForm]="userForm" placeholder="{{ 'Forms.Phone_Number_Placeholder' | translate}}" />
             @if(!CurrentUser || !CurrentUser.id){
-            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Password" name="password"
-            inputName="password" [parentForm]="userForm" placeholder="please insert your Password" />
+            <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.Password' | translate}}" name="{{'Forms.Password' | translate}}"
+            inputName="password" [parentForm]="userForm" placeholder="{{ 'Forms.Password_Placeholder' | translate}}" />
             }
-            <app-dropdown [options]="listOfCountries" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Country" name="Country"
-            inputName="country_Id" [parentForm]="userForm" placeholder="please Select Your Country" />
+            <app-dropdown [options]="listOfCountries" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.Country' | translate}}" name="{{'Forms.Country' | translate}}"
+            inputName="country_Id" [parentForm]="userForm" placeholder="{{ 'Forms.Country_Placeholder' | translate}}" />
 
-            <app-dropdown [options]="listOfNationalities" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Nationality" name="Nationality"
-            inputName="nationality_Id" [parentForm]="userForm" placeholder="please Select Your Nationality" />
+            <app-dropdown [options]="listOfNationalities" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="{{'Forms.Nationality' | translate}}" name="{{'Forms.Nationality' | translate}}"
+            inputName="nationality_Id" [parentForm]="userForm" placeholder="{{ 'Forms.Nationality_Placeholder' | translate}}" />
 
 
     </div>

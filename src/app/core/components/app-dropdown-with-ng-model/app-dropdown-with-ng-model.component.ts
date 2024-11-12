@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 
@@ -17,5 +17,6 @@ export class AppDropdownWithNgModelComponent {
   @Input() name: string = '';
   @Input() options: { id: number; name: string }[] = [];
   @Input() modelValue: any;
+  @Output() modelValueChange = new EventEmitter<any>();
 
 }

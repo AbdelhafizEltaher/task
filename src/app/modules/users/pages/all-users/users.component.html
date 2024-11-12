@@ -1,17 +1,41 @@
 <div>
-  <div class="flex justify-between">
-    <app-header-page [title]="'All Users'"></app-header-page>
-    <div class="inline-block space-x-4">
-      <button
-        (click)="op.toggle($event)"
-        class="mx-3 flex-none rounded-md bg-primary/70 px-4 py-2.5 text-xs font-semibold text-white">
-        Filter
-      </button>
-      <button
+  <div class="flex items-center justify-between">
+    <app-header-page title="{{ 'Users.Users' | translate}}"></app-header-page>
+    <div class="grid grid-cols-4 items-center justify-end gap-4">
+
+        <app-input-with-ng-model
+          name="{{ 'KeyWords.Search' | translate}}"
+          inputName="search"
+          [(modelValue)]="searchModel.search"
+          placeholder="{{'KeyWords.search_here' | translate}}"
+          (modelValueChange)="searchWithText()"
+          >
+        </app-input-with-ng-model>
+    
+        <app-dropdown-with-ng-model
+          name="{{ 'KeyWords.Country' | translate}}"
+          inputName="Country"
+          [(modelValue)]="searchModel.countryId"
+          placeholder="{{ 'KeyWords.Select_Country' | translate}}"
+          [options]="listOfCountries"
+          (modelValueChange)="getAllData()">
+        </app-dropdown-with-ng-model>
+    
+        <app-dropdown-with-ng-model
+        name="{{ 'KeyWords.Nationality' | translate}}"
+          inputName="Nationality"
+          [(modelValue)]="searchModel.nationalityId"
+          placeholder="{{ 'KeyWords.Select_Nationality' | translate}}"
+          [options]="listOfNationalities"
+          (modelValueChange)="getAllData()">
+        </app-dropdown-with-ng-model>
+
+        <button
         (click)="openAddModel()"
-        class="flex-none rounded-md bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground">
-        Add Users
+        class="h-[45px] flex-none rounded-md bg-primary px-4 py-2.5 text-base font-semibold text-primary-foreground">
+        {{"Users.Add_Users" | translate}}
       </button>
+
     </div>
   </div>
 
@@ -20,55 +44,19 @@
       [totalCount]="120"
       [tableHeader]="header"
       [tableData]="usersList"
+      [enableToggle]="true"
+      [enableAction]="true"
+      [enableEdit]="true"
+      [enableDelete]="true"
       (togglePopUp)="togglePopUp($event)"
       (deletePopUp)="deletePopUp($event)"
       (openEditModel)="openEditModel($event)"
       (openViewModel)="openViewModel($event)"
-      [enableAction]="true"></general-table>
+      ></general-table>
   </div>
 </div>
 
 <p-confirmPopup></p-confirmPopup>
 
-<p-overlayPanel #op>
-  <div class="grid w-[500px] grid-cols-2 gap-4">
-    <app-input-with-ng-model
-      name="search"
-      inputName="search"
-      [modelValue]="searchModel.search"
-      placeholder="search here"></app-input-with-ng-model>
 
-    <app-dropdown-with-ng-model
-      name="Country"
-      inputName="Country"
-      [modelValue]="searchModel.countryId"
-      placeholder="please select a country"
-      [options]="listOfCountries">
-    </app-dropdown-with-ng-model>
 
-    <app-dropdown-with-ng-model
-      name="Nationality"
-      inputName="Nationality"
-      [modelValue]="searchModel.nationalityId"
-      placeholder="please select a nationality"
-      [options]="listOfNationalities">
-    </app-dropdown-with-ng-model>
-
-    <app-dropdown-with-ng-model
-      name="Role"
-      inputName="Role"
-      [modelValue]="searchModel.roleId"
-      placeholder="please select a role"
-      [options]="listOfRoles">
-    </app-dropdown-with-ng-model>
-
-    <div class="col-span-2 mt-4 flex justify-end gap-4">
-      <app-button (buttonClick)="getAllData()" full impact="light" tone="primary" shape="rounded" size="medium"
-        >Apply</app-button
-      >
-      <app-button (buttonClick)="clearData()" full impact="light" tone="light" shape="rounded" size="medium"
-        >Cancel</app-button
-      >
-    </div>
-  </div>
-</p-overlayPanel>

@@ -11,10 +11,6 @@
           <svg-icon src="assets/icons/logo.svg"> </svg-icon>
         </a>
         <p class="ml-2 text-2xl font-bold text-primary">HR</p>
-        <svg class="mx-1" width="21" height="5" viewBox="0 0 21 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10.75" y="0.75" width="10" height="4" fill="#444343" />
-          <rect x="0.75" y="0.75" width="10" height="4" fill="#D12920" />
-        </svg>
         <p class="text-2xl font-bold text-foreground">Task</p>
       </div>
       <button
@@ -69,7 +65,7 @@
       </svg>
 
       <div class="ml-3 truncate text-[18px] font-semibold tracking-wide focus:outline-none">
-        <span class="px-2 font-bold text-[#444343] group-hover:text-white">Sing Out</span>
+        <span class="px-2 font-bold text-[#444343] group-hover:text-white">{{"Auth.SingOut" | translate}}</span>
       </div>
 
       <div class="group fixed w-full" *ngIf="!menuService.showSideBar">
@@ -104,7 +100,7 @@
 
         <span
           class="z-1 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-primary p-2 text-lg font-bold text-background shadow-md transition-all duration-200 group-hover:scale-100">
-          Sing Out
+          {{"Auth.SingOut" | translate}}
         </span>
       </div>
     </a>

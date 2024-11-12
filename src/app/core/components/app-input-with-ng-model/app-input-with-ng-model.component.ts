@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,4 +16,6 @@ export class AppInputWithNgModelComponent {
   @Input() name: string = '';
   @Input() type: 'text' | 'email' | 'password' | 'number' = 'text';
   @Input() modelValue: any;
+  @Output() modelValueChange = new EventEmitter<any>();
+
 }

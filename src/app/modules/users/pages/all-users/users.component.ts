@@ -19,6 +19,8 @@ import { ButtonComponent } from 'src/app/core/components/button/button.component
 import { AppDropdownWithNgModelComponent } from 'src/app/core/components/app-dropdown-with-ng-model/app-dropdown-with-ng-model.component';
 import { ILookup } from 'src/app/core/models/shard/IGeneralResponse';
 import { LookupsService } from 'src/app/core/services/lookups/lookups.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -31,28 +33,27 @@ import { LookupsService } from 'src/app/core/services/lookups/lookups.service';
     CommonModule,
     HeaderPageComponent,
     ConfirmPopupModule,
-    ButtonComponent
+    ButtonComponent,
+    TranslateModule
   ],
   providers: [ConfirmationService],
   templateUrl: './users.component.html',
 })
 export class UsersComponent {
   header: { field: string; header: string }[] = [
-    { field: 'firstName', header: 'First Name' },
-    { field: 'lastName', header: 'Last Name' },
-    { field: 'userName', header: 'User Name' },
-    { field: 'email', header: 'Email' },
-    { field: 'phoneNumber', header: 'Phone Number' },
-    { field: 'roleName', header: 'Role' },
+    { field: 'firstName', header:  'TablesHeaders.UsersTable.First_Name' },
+    { field: 'lastName', header: 'TablesHeaders.UsersTable.Last_Name' },
+    { field: 'userName', header: 'TablesHeaders.UsersTable.User_Name' },
+    { field: 'email', header: 'TablesHeaders.UsersTable.Email' },
+    { field: 'phoneNumber', header: 'TablesHeaders.UsersTable.Phone_Number' },
+    { field: 'roleName', header: 'TablesHeaders.UsersTable.Role' },
   ];
   usersList: IUser[] = [];
   searchModel: IUserSearch = {} as IUserSearch;
   listOfRoles: ILookup[] = [];
   listOfNationalities: ILookup[] = [];
   listOfCountries: ILookup[] = [];
-
-
-
+  enableSearchInTime$ = new Subject<string>();
 
   private store = inject(Store<{ users: UsersState }>);
   private _userServices = inject(UserService);
@@ -60,6 +61,7 @@ export class UsersComponent {
   private _toast = inject(ToasterService);
   private _modalService = inject(ModalService);
   private _lookupServices = inject(LookupsService);
+  private _translate = inject(TranslateService);
 
   constructor() {
     this.store
@@ -74,7 +76,16 @@ export class UsersComponent {
   }
 
   getAllData(){
-    this._userServices.getAllUsers(this.searchModel);
+     this._userServices.getAllUsers(this.searchModel);
+  }
+  ngOnInit(): void {
+    this.enableSearchInTime$.pipe(debounceTime(800)).subscribe(() => {
+      this.getAllData();
+    });
+  }
+
+  searchWithText(){
+    this.enableSearchInTime$.next(this.searchModel.search);
   }
   clearData(){
     this.searchModel = {} as IUserSearch;
@@ -82,7 +93,6 @@ export class UsersComponent {
   }
 
   getAllLookups() {
-    this._lookupServices.getAllRoles().subscribe((res) => (this.listOfRoles = res));
     this._lookupServices.getAllCountries().subscribe((res) => (this.listOfCountries = res));
     this._lookupServices.getAllNationalities().subscribe((res) => (this.listOfNationalities = res));
   }

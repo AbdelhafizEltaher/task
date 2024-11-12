@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl :'http://enjoyspot.runasp.net'
+  baseUrl :'https://enjoyspot.premiumasp.net'
 };
 
 /*

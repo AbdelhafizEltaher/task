@@ -8,13 +8,14 @@ import { NgClass, NgIf } from '@angular/common';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { BasicsConstance } from 'src/app/core/constants/basics-constance';
 import { TranslationService } from 'src/app/core/i18n';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
-  imports: [NgClass, NgIf, AngularSvgIconModule, SidebarMenuComponent],
+  imports: [NgClass, NgIf, AngularSvgIconModule, SidebarMenuComponent , TranslateModule],
 })
 export class SidebarComponent implements OnInit {
   public appJson: any = packageJson;

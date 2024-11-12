@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AppErrorComponent } from '../app-error/app-error.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-input',

@@ -1,0 +1,64 @@
+{
+	"Users": {
+		"Users": "المستخدمين",
+		"Add_Users": "إضافة مستخدمين",
+		"HR": "الموارد البشرية"
+	},
+	"Auth": {
+		"SingOut": "تسجيل الخروج"
+	},
+	"KeyWords": {
+		"Name": "الاسم",
+		"Email": "البريد الإلكتروني",
+		"Password": "كلمة المرور",
+		"ConfirmPassword": "تأكيد كلمة المرور",
+		"SelectRole": "اختر الدور",
+		"Submit": "إرسال",
+		"Cancel": "إلغاء",
+		"Search": "بحث",
+		"search_here": "ابحث هنا",
+		"Country": "الدولة",
+		"Select_Country": "اختر الدولة",
+		"Nationality": "الجنسية",
+		"Select_Nationality": "اختر الجنسية",
+		"Role": "الدور",
+		"Select_Role": "اختر الدور",
+		"Status": "الحالة",
+		"Active": "مفعل",
+		"Inactive": "غير مفعل",
+		"Actions": "الإجراءات",
+		"Edit": "تعديل",
+		"Delete": "حذف",
+		"SetActive": "تفعيل",
+		"SetInActive": "تعطيل",
+		"Total_Number_Of_Records": "إجمالي عدد البيانات"
+	},
+	"Forms": {
+		"First_Name": "الاسم الأول",
+		"Last_Name": "الاسم الأخير",
+		"User_Name": "اسم المستخدم",
+		"Email": "البريد الإلكتروني",
+		"Phone_Number": "رقم الهاتف",
+		"Password": "كلمة السر",
+		"Country": "الدولة",
+		"Nationality": "الجنسية",
+		"First_Name_Placeholder": "من فضلك ادخل الاسم الأول",
+		"Last_Name_Placeholder": "من فضلك ادخل الاسم الاخير",
+		"User_Name_Placeholder": "من فضلك ادخل اسم المستخدم",
+		"Email_Placeholder": "من فضلك ادخل البريد الإلكتروني",
+		"Phone_Number_Placeholder": "من فضلك ادخل رقم الهاتف",
+		"Password_Placeholder": "من فضلك ادخل كلمة السر",
+		"Country_Placeholder": "من فضلك ادخل الدولة",
+		"Nationality_Placeholder": "من فضلك ادخل الجنسية"
+	},
+	"TablesHeaders": {
+		"UsersTable": {
+			"First_Name": "الاسم الأول",
+			"Last_Name": "الاسم الأخير",
+			"User_Name": "اسم المستخدم",
+			"Email": "البريد الإلكتروني",
+			"Phone_Number": "رقم الهاتف",
+			"Role": "الدور"
+		}
+	}
+}

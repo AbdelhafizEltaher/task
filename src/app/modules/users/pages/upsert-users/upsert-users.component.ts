@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { AppInputComponent } from 'src/app/core/components/app-input/app-input.component';
 import { ButtonComponent } from 'src/app/core/components/button/button.component';
 import { DropdownComponent } from 'src/app/core/components/dropdown/dropdown.component';
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/core/services/users/user.service';
 @Component({
   selector: 'app-upsert-users',
   standalone: true,
-  imports: [CommonModule, ButtonComponent, ReactiveFormsModule, AppInputComponent, DropdownComponent],
+  imports: [CommonModule, ButtonComponent, ReactiveFormsModule, AppInputComponent, DropdownComponent , TranslateModule],
   templateUrl: './upsert-users.component.html',
 })
 export class UpsertUsersComponent {
@@ -53,7 +54,7 @@ export class UpsertUsersComponent {
     country_Id: [null, Validators.compose([Validators.required])],
     email: [null, Validators.compose([Validators.required, Validators.email, Validators.minLength(10)])],
     userName: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-    password: [null, Validators.compose([Validators.minLength(3)])],
+    password: [null, Validators.compose([Validators.minLength(5)])],
     phoneNumber: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
     isActive: [true],
   });

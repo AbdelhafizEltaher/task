@@ -1,0 +1,64 @@
+{
+	"Users": {
+		"Users": "Users",
+		"Add_Users": "Add Users",
+		"HR": "Hr"
+	},
+	"Auth": {
+		"SingOut": "Sing Out"
+	},
+	"KeyWords": {
+		"Name": "Name",
+		"Email": "Email",
+		"Password": "Password",
+		"ConfirmPassword": "Confirm Password",
+		"SelectRole": "Select Role",
+		"Submit": "Submit",
+		"Cancel": "Cancel",
+		"Search": "Search",
+		"search_here": "Search Here",
+		"Country": "Country",
+		"Select_Country": "Select Country",
+		"Nationality": "Nationality",
+		"Select_Nationality": "Select Nationality",
+		"Role": "Role",
+		"Select_Role": "Select Role",
+		"Status": "Status",
+		"Active": "Active",
+		"Inactive": "Not Active",
+		"Actions": "Actions",
+		"Edit": "Edit",
+		"Delete": "Delete",
+		"SetActive": "Activate",
+		"SetInActive": "DeActivate",
+		"Total_Number_Of_Records": "Total Number Of Records"
+	},
+	"Forms": {
+		"First_Name": " First Name",
+		"Last_Name": " Last Name",
+		"User_Name": " User Name",
+		"Email": "Email",
+		"Phone_Number": "Phone Number",
+		"Country": "Country",
+		"Password": "Password",
+		"Nationality": "Nationality",
+		"First_Name_Placeholder": "Please Enter First Name",
+		"Last_Name_Placeholder": "Please Enter Last Name",
+		"User_Name_Placeholder": "Please Enter User Name",
+		"Email_Placeholder": "Please Enter Email",
+		"Phone_Number_Placeholder": "Please Enter Phone Number",
+		"Password_Placeholder": "Please Enter Password",
+		"Country_Placeholder": "Please Enter Country",
+		"Nationality_Placeholder": "Please Enter Nationality"
+	},
+	"TablesHeaders": {
+		"UsersTable": {
+			"First_Name": " First Name",
+			"Last_Name": " Last Name",
+			"User_Name": " User Name",
+			"Email": "Email",
+			"Phone_Number": "Phone Number",
+			"Role": "Role"
+		}
+	}
+}

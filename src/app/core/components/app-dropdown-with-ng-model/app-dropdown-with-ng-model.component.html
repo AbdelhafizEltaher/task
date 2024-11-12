@@ -12,6 +12,8 @@
     [filter]="true"
     [showClear]="true"
     styleClass="w-full bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:ring focus:ring-blue-300"
-    [(ngModel)]="modelValue" />
+    [(ngModel)]="modelValue"
+    (ngModelChange)="modelValueChange.emit($event)"
+     />
   </div>
   

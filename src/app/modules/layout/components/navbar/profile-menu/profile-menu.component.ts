@@ -8,13 +8,14 @@ import { ThemeService } from 'src/app/core/services/uiServices/theme.service';
 import { BasicsConstance } from 'src/app/core/constants/basics-constance';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { TranslationService } from 'src/app/core/i18n';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-menu',
   templateUrl: './profile-menu.component.html',
   styleUrls: ['./profile-menu.component.scss'],
   standalone: true,
-  imports: [ClickOutsideDirective, NgClass, AngularSvgIconModule],
+  imports: [ClickOutsideDirective, NgClass, AngularSvgIconModule , TranslateModule],
   animations: [
     trigger('openClose', [
       state(
