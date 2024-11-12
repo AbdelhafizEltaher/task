@@ -53,7 +53,7 @@ export class UpsertUsersComponent {
     country_Id: [null, Validators.compose([Validators.required])],
     email: [null, Validators.compose([Validators.required, Validators.email, Validators.minLength(10)])],
     userName: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-    password: [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+    password: [null, Validators.compose([Validators.minLength(3)])],
     phoneNumber: [null, Validators.compose([Validators.required, Validators.minLength(10)])],
     isActive: [true],
   });
