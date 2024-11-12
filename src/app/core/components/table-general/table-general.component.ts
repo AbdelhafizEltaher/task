@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { PaginatorModule } from 'primeng/paginator';
+import { ThemeService } from '../../services/uiServices/theme.service';
 
 @Component({
   selector: 'general-table',
@@ -25,6 +26,8 @@ export class TableGeneralComponent {
   @Output() openEditModel = new EventEmitter<any>();
   @Output() openViewModel = new EventEmitter<any>();
 	@Output() pageChanged: EventEmitter<any> = new EventEmitter<any>();
+
+  private _themeService = inject(ThemeService);
   
   onTogglePopUp(event: Event, row: any) {
     this.togglePopUp.emit({ event, row });
@@ -50,4 +53,8 @@ export class TableGeneralComponent {
 	onPageChange(e: any) {
 		this.pageChanged.emit({ pageIndex: e.page + 1, pageSize: e.rows })
 	}
+
+  isDarkTheme() : boolean {
+    return this._themeService.isDark;
+  }
 }

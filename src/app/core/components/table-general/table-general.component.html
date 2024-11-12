@@ -20,7 +20,7 @@
         <ng-container *ngFor="let row of tableData; let rowIndex = index">
           <tr class="border-b border-dashed border-border">
             <ng-container *ngFor="let col of tableHeader; let colIndex = index">
-              <td class="text-dark py-3 text-center">{{ row[col.field] }}</td>
+              <td [ngClass]="{'text-white' : isDarkTheme() ,'text-black' :  !isDarkTheme()}" class=" py-3 text-center">{{ row[col.field] }}</td>
             </ng-container>
             @if(enableToggle){
               <td class="text-dark py-3 text-center">
@@ -69,6 +69,8 @@
     dir="ltr"
     (onPageChange)="onPageChange($event)" 
     [rows]="5" 
-    [totalRecords]="totalCount"/>
+    [totalRecords]="totalCount"
+    [styleClass]=" isDarkTheme() ? 'bg-black' : 'bg-white'"
+    />
   </div>
 </div>

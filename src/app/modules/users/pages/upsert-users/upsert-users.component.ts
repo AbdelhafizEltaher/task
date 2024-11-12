@@ -10,6 +10,7 @@ import { ILookup } from 'src/app/core/models/shard/IGeneralResponse';
 import { IUser } from 'src/app/core/models/users/IUser';
 import { LookupsService } from 'src/app/core/services/lookups/lookups.service';
 import { ModalService } from 'src/app/core/services/shardServices/model.service';
+import { ToasterService } from 'src/app/core/services/uiServices/toaster.service';
 import { UserService } from 'src/app/core/services/users/user.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class UpsertUsersComponent {
   private _userServices = inject(UserService);
   private _lookupServices = inject(LookupsService);
   private _modelServices = inject(ModalService);
+  private _toast = inject(ToasterService);
   BasicConstants = BasicsConstance;
   CurrentUser: IUser = {} as IUser;
   errors: string = '';
@@ -68,6 +70,7 @@ export class UpsertUsersComponent {
   submit() {
     this._userServices.upsertUser(this.userForm.value).subscribe({
       next: (res) => {
+        this._toast.success('User Added Successfully');
         this._modelServices.closeSidebar({ isClosed: true, AddedSuccessfully: true });
       },
       error: (err) => {

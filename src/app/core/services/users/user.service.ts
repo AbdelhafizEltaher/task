@@ -53,6 +53,7 @@ export class UserService {
         if (res.isSuccess) {
           this.getAllUsers(searchModel);
         }
+        return res;
       }),
     );
   }
@@ -63,6 +64,7 @@ export class UserService {
         if (res.isSuccess) {
           this.getAllUsers(searchModel);
         }
+        return res;
       }),
     );
   }
