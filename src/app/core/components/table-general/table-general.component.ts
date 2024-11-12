@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'general-table',
   standalone: true,
-  imports: [CommonModule , TranslateModule , ButtonModule , TooltipModule],
+  imports: [CommonModule , TranslateModule , ButtonModule , PaginatorModule , TooltipModule],
   templateUrl: './table-general.component.html',
   styleUrl: './table-general.component.scss'
 })
@@ -20,7 +21,8 @@ export class TableGeneralComponent {
   @Output() deletePopUp = new EventEmitter<{ event: Event; row: any }>();
   @Output() openEditModel = new EventEmitter<any>();
   @Output() openViewModel = new EventEmitter<any>();
-
+	@Output() pageChanged: EventEmitter<any> = new EventEmitter<any>();
+  
   onTogglePopUp(event: Event, row: any) {
     this.togglePopUp.emit({ event, row });
   }
@@ -39,4 +41,10 @@ export class TableGeneralComponent {
   constructor() {
   }
   ngOnInit(): void {}
+
+
+
+	onPageChange(e: any) {
+		this.pageChanged.emit({ pageIndex: e.page + 1, pageSize: e.rows })
+	}
 }

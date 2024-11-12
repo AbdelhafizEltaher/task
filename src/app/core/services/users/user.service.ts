@@ -41,27 +41,27 @@ export class UserService {
     return this._commonHttp.CommonPostRequests(model, `${environment.baseUrl + HttpPaths.API_UPSERT_USER}`).pipe(
       map((res) => {
         if (res.isSuccess) {
-          this.getAllUsers({});
+          this.getAllUsers({} as IUserSearch);
         }
       })
     )
   }
 
-  toggleUser(id: string) {
+  toggleUser(id: string , searchModel: IUserSearch) {
     return this._commonHttp.CommonPutRequests({}, `${environment.baseUrl + HttpPaths.API_TOGGLE_USER + id}`).pipe(
       map((res) => {
         if (res.isSuccess) {
-          this.getAllUsers({});
+          this.getAllUsers(searchModel);
         }
       }),
     );
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: string , searchModel: IUserSearch) {
     return this._commonHttp.CommonDeleteRequest(`${environment.baseUrl + HttpPaths.API_DELETE_USER + id}`).pipe(
       map((res) => {
         if (res.isSuccess) {
-          this.getAllUsers({});
+          this.getAllUsers(searchModel);
         }
       }),
     );

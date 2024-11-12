@@ -23,13 +23,8 @@ export class ButtonComponent implements OnInit {
   shape = input<ButtonProps['shape']>('rounded');
   tone = input<ButtonProps['tone']>('primary');
   shadow = input<ButtonProps['shadow']>('none');
-  full = input(false, {
-    transform: (value: boolean | string) => (typeof value === 'string' ? value === '' : value),
-  });
-
-  @Input() disabled : boolean = false;
-  @Input() type : 'button' | 'submit' | 'reset' = 'button';
-
+  @Input() disabled: boolean = false;
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Output() buttonClick = new EventEmitter<void>();
 
   public classes: string = '';
@@ -98,7 +93,7 @@ export class ButtonComponent implements OnInit {
       this.sizeClasses[this.size()],
       this.shapeClasses[this.shape()],
       this.shadowClasses[this.shadow()],
-      this.full() ? 'w-full' : '',
+      'w-full',
     );
   }
 

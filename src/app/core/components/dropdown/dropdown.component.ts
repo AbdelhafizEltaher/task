@@ -16,7 +16,6 @@ export class DropdownComponent {
   @Input() placeholder: string = '';
   @Input() inputName: string = '';
   @Input() name: string = '';
-  @Input() type: 'text' | 'email' | 'password' | 'number' = 'text';
   @Input() validation: string[] = [];
   @Input() parentForm!: FormGroup;
   @Input() options: {id:number , name : string}[] = [];

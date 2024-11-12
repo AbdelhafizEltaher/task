@@ -12,11 +12,27 @@ import { ConfirmationService } from 'primeng/api';
 import { ToasterService } from 'src/app/core/services/uiServices/toaster.service';
 import { UpsertUsersComponent } from '../upsert-users/upsert-users.component';
 import { ModalService } from 'src/app/core/services/shardServices/model.service';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppInputWithNgModelComponent } from 'src/app/core/components/app-input-with-ng-model/app-input-with-ng-model.component';
+import { ButtonComponent } from 'src/app/core/components/button/button.component';
+import { AppDropdownWithNgModelComponent } from 'src/app/core/components/app-dropdown-with-ng-model/app-dropdown-with-ng-model.component';
+import { ILookup } from 'src/app/core/models/shard/IGeneralResponse';
+import { LookupsService } from 'src/app/core/services/lookups/lookups.service';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [TableGeneralComponent, CommonModule, HeaderPageComponent, ConfirmPopupModule],
+  imports: [
+    TableGeneralComponent,
+    AppInputWithNgModelComponent,
+    AppDropdownWithNgModelComponent,
+    OverlayPanelModule,
+    CommonModule,
+    HeaderPageComponent,
+    ConfirmPopupModule,
+    ButtonComponent
+  ],
   providers: [ConfirmationService],
   templateUrl: './users.component.html',
 })
@@ -30,12 +46,20 @@ export class UsersComponent {
     { field: 'roleName', header: 'Role' },
   ];
   usersList: IUser[] = [];
+  searchModel: IUserSearch = {} as IUserSearch;
+  listOfRoles: ILookup[] = [];
+  listOfNationalities: ILookup[] = [];
+  listOfCountries: ILookup[] = [];
+
+
+
+
   private store = inject(Store<{ users: UsersState }>);
   private _userServices = inject(UserService);
   private _confirmationService = inject(ConfirmationService);
   private _toast = inject(ToasterService);
   private _modalService = inject(ModalService);
-  searchModel: IUserSearch = {} as IUserSearch;
+  private _lookupServices = inject(LookupsService);
 
   constructor() {
     this.store
@@ -43,7 +67,24 @@ export class UsersComponent {
       .subscribe((res) => {
         this.usersList = res;
       });
+
+      this.getAllData();
+      this.getAllLookups();
+   
+  }
+
+  getAllData(){
     this._userServices.getAllUsers(this.searchModel);
+  }
+  clearData(){
+    this.searchModel = {} as IUserSearch;
+    this.getAllData();
+  }
+
+  getAllLookups() {
+    this._lookupServices.getAllRoles().subscribe((res) => (this.listOfRoles = res));
+    this._lookupServices.getAllCountries().subscribe((res) => (this.listOfCountries = res));
+    this._lookupServices.getAllNationalities().subscribe((res) => (this.listOfNationalities = res));
   }
 
   deletePopUp(acceptData: { event: Event; row: any }): void {
@@ -60,7 +101,7 @@ export class UsersComponent {
   }
 
   deleteItem(item: IUser): void {
-    this._userServices.deleteUser(item.id).subscribe({
+    this._userServices.deleteUser(item.id, this.searchModel).subscribe({
       next: (res: any) => {
         if (res.isSuccess) {
           this._toast.success(res.message);
@@ -85,7 +126,7 @@ export class UsersComponent {
   }
 
   toggleItem(item: IUser): void {
-    this._userServices.toggleUser(item.id).subscribe({
+    this._userServices.toggleUser(item.id, this.searchModel).subscribe({
       next: (res: any) => {
         if (res.statusCode === 200) {
           this._toast.success(res.message);
@@ -105,5 +146,11 @@ export class UsersComponent {
   }
   openViewModel(data: IUser) {
     this._modalService.openModal(UpsertUsersComponent, 'View User', 'right', '50%', data, true);
+  }
+
+  changePage(e: any) {
+    this.searchModel.pageIndex = e.pageIndex;
+    this.searchModel.pageSize = e.pageSize;
+    this._userServices.getAllUsers(this.searchModel);
   }
 }

@@ -2,16 +2,20 @@
   <div class="flex justify-between">
     <app-header-page [title]="'All Users'"></app-header-page>
     <div class="inline-block space-x-4">
-      <button class="mx-3 flex-none rounded-md bg-primary/70 px-4 py-2.5 text-xs font-semibold text-white">
+      <button
+        (click)="op.toggle($event)"
+        class="mx-3 flex-none rounded-md bg-primary/70 px-4 py-2.5 text-xs font-semibold text-white">
         Filter
       </button>
-      <button (click)="openAddModel()" class="flex-none rounded-md bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground">
+      <button
+        (click)="openAddModel()"
+        class="flex-none rounded-md bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground">
         Add Users
       </button>
     </div>
   </div>
 
-  <div class="grid grid-cols-1 mt-4">
+  <div class="mt-4 grid grid-cols-1">
     <general-table
       [totalCount]="120"
       [tableHeader]="header"
@@ -25,3 +29,46 @@
 </div>
 
 <p-confirmPopup></p-confirmPopup>
+
+<p-overlayPanel #op>
+  <div class="grid w-[500px] grid-cols-2 gap-4">
+    <app-input-with-ng-model
+      name="search"
+      inputName="search"
+      [modelValue]="searchModel.search"
+      placeholder="search here"></app-input-with-ng-model>
+
+    <app-dropdown-with-ng-model
+      name="Country"
+      inputName="Country"
+      [modelValue]="searchModel.countryId"
+      placeholder="please select a country"
+      [options]="listOfCountries">
+    </app-dropdown-with-ng-model>
+
+    <app-dropdown-with-ng-model
+      name="Nationality"
+      inputName="Nationality"
+      [modelValue]="searchModel.nationalityId"
+      placeholder="please select a nationality"
+      [options]="listOfNationalities">
+    </app-dropdown-with-ng-model>
+
+    <app-dropdown-with-ng-model
+      name="Role"
+      inputName="Role"
+      [modelValue]="searchModel.roleId"
+      placeholder="please select a role"
+      [options]="listOfRoles">
+    </app-dropdown-with-ng-model>
+
+    <div class="col-span-2 mt-4 flex justify-end gap-4">
+      <app-button (buttonClick)="getAllData()" full impact="light" tone="primary" shape="rounded" size="medium"
+        >Apply</app-button
+      >
+      <app-button (buttonClick)="clearData()" full impact="light" tone="light" shape="rounded" size="medium"
+        >Cancel</app-button
+      >
+    </div>
+  </div>
+</p-overlayPanel>

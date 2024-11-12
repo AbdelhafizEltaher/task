@@ -12,15 +12,15 @@
   <div >
     <div class="w-full flex flex-col gap-4 my-3">
       <app-input [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="User Name" name="userName" inputName="userName" [parentForm]="form" placeholder="please insert your UserName"/>
-      <app-input [validation]="[BasicConstants.REQUIRED]" label="Password" name="password" inputName="password" [parentForm]="form" placeholder="please insert your Password"/>
+      <app-input [type]="'password'" [validation]="[BasicConstants.REQUIRED , BasicConstants.MINLENGTH]" label="Password" name="password" inputName="password" [parentForm]="form" placeholder="please insert your Password"/>
     </div>
 
 </div>
 
 
   <!-- Submit Button -->
-  <div>
-    <app-button [disabled]="form.invalid" full impact="bold" tone="primary" shape="rounded" size="large">Sign in</app-button>
+  <div class="w-full">
+    <app-button  [disabled]="form.invalid || submitted" impact="bold" tone="primary" shape="rounded" size="medium" [type]="'submit'">Sign in</app-button>
   </div>
 
 </form>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppInputComponent } from 'src/app/core/components/app-input/app-input.component';
 import { ButtonComponent } from 'src/app/core/components/button/button.component';
@@ -9,7 +9,6 @@ import { ILookup } from 'src/app/core/models/shard/IGeneralResponse';
 import { IUser } from 'src/app/core/models/users/IUser';
 import { LookupsService } from 'src/app/core/services/lookups/lookups.service';
 import { ModalService } from 'src/app/core/services/shardServices/model.service';
-import { ToasterService } from 'src/app/core/services/uiServices/toaster.service';
 import { UserService } from 'src/app/core/services/users/user.service';
 
 @Component({
@@ -23,7 +22,6 @@ export class UpsertUsersComponent {
   private _userServices = inject(UserService);
   private _lookupServices = inject(LookupsService);
   private _modelServices = inject(ModalService);
-  private _toast = inject(ToasterService);
   BasicConstants = BasicsConstance;
   CurrentUser: IUser = {} as IUser;
   errors: string = '';

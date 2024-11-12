@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { BasicsConstance } from '../../constants/basics-constance';
+import { CommonModule } from '@angular/common';
 
 
 export interface IValidation {
@@ -12,7 +13,7 @@ export interface IValidation {
 @Component({
   selector: 'app-error',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './app-error.component.html',
   styleUrl: './app-error.component.scss'
 })

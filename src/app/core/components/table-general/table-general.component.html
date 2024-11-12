@@ -74,5 +74,11 @@
         </ng-container>
       </tbody>
     </table>
+
+    <p-paginator 
+    (onPageChange)="onPageChange($event)" 
+    [rows]="5" 
+    [totalRecords]="totalCount" 
+    [rowsPerPageOptions]="[10, 20, 30]" />
   </div>
 </div>

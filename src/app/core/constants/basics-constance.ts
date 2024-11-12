@@ -6,9 +6,8 @@ export enum BasicsConstance {
   AR = 'العربية',
   EN = 'English',
   REQUIRED ='required',
-  MINLENGTH = 'minLength',
-  MAXLENGTH = 'maxLength',
-  INVALID_EMAIL = 'invalidEmail',
-  INVALID_PASSWORD = 'invalidPassword',
-  INVALID_USERNAME = 'invalidUsername',
+  MINLENGTH = 'minlength',
+  MAXLENGTH = 'maxlength',
+  PATTERN = 'pattern',
+  INVALID_EMAIL ='email'
 }

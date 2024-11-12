@@ -35,7 +35,7 @@ export class TranslationService {
 
   changeLang(lang: 'ar' | 'en') {
     this.setLanguage(lang);
-    this.translate.use(lang); // Set language without reloading
+    this.translate.use(lang);
     location.reload();
   }
 

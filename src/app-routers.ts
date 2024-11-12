@@ -14,7 +14,4 @@ export const routes: Routes = [
   { path: '**', redirectTo: 'auth' },
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes, {
-  scrollPositionRestoration: 'enabled',
-  preloadingStrategy: PreloadAllModules,
-});
+export const AppRoutingModule = RouterModule.forRoot(routes);

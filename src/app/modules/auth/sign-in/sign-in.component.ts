@@ -29,8 +29,8 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', Validators.required],
+      userName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
     });
   }
 
@@ -38,17 +38,16 @@ export class SignInComponent implements OnInit {
     return this.form.controls;
   }
 
-  togglePasswordTextType() {
-    this.passwordTextType = !this.passwordTextType;
-  }
-
   onSubmit() {
+    console.log('hi');
+    
     this.submitted = true;
     const { userName, password } = this.form.value;
     if (this.form.valid) {
       this._authServices.Login({ userName, password }).subscribe({
         next: (res) => {
           this.goToMain(res);
+          this.submitted = false;
         },
       });
     }
@@ -56,7 +55,7 @@ export class SignInComponent implements OnInit {
 
   goToMain(data: ILoginResponse) {
     localStorage.setItem(BasicsConstance.USER_TOKEN, data.token);
-    localStorage.setItem(BasicsConstance.USER_ID , data.userId);
+    localStorage.setItem(BasicsConstance.USER_ID, data.userId);
     localStorage.setItem(BasicsConstance.USER_DATA, JSON.stringify(data));
     this._router.navigate(['/users']);
   }

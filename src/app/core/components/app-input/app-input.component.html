@@ -10,21 +10,21 @@
     [type]="type"
     [name]="name"
     [placeholder]="placeholder"
-    class="h-[40px] w-full rounded-md !outline-none border border-border px-4 ring-0"
+    class="h-[40px] w-full rounded-md !outline-none  border border-gray-300 px-2 ring-0"
     [formControlName]="inputName"
     [ngClass]="{
-      'border-red-600 focus:border-red-600 ':
+      'border-red-600 focus:border-red-600': 
         parentForm.controls[inputName].invalid &&
-        (parentForm.controls[inputName].touched || parentForm.controls[inputName].dirty)
-    }"
-    [ngClass]="{
-      'border-green-600 focus:border-green-600 ':
+        (parentForm.controls[inputName].touched || parentForm.controls[inputName].dirty),
+      'border-green-600 focus:border-green-600': 
         parentForm.controls[inputName].valid &&
         (parentForm.controls[inputName].touched || parentForm.controls[inputName].dirty)
-    }" />
+    }"
 
+    />
     <app-error       
     [control]="parentForm.controls[inputName]"
     [validation]="validation"
-    [name]="name" />
+    [name]="name"
+     />
 </div>

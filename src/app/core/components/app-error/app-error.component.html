@@ -2,16 +2,13 @@
 <ng-container>
   @if (control.hasError(item) && control.invalid && (control.touched || control.dirty)) {
   <ng-container>
+    
     <div class="p-2 text-red-800">
-      @if(item=== BasicConstants.REQUIRED) {
-      <span role="alert"> {{ name }} is Required </span>
-      } @else if (item===BasicConstants.MINLENGTH) {
-      <span role="alert"> {{ name }} exceed min Length</span>
-      } @else if (item===BasicConstants.MAXLENGTH) {
-      <span role="alert"> {{ name }} exceed max Length</span>
-      } @else if (item===BasicConstants.INVALID_EMAIL) {
-      <span role="alert"> Invalid Email Address</span>
-      }
+      <span role="alert" *ngIf="item===BasicConstants.REQUIRED"> {{name}} is required. </span>
+      <span role="alert" *ngIf="item===BasicConstants.MINLENGTH"> {{name}} must be at least the minimum length. </span>
+      <span role="alert" *ngIf="item===BasicConstants.MAXLENGTH">{{name}} must be at most the maximum length. </span>
+      <span role="alert" *ngIf="item===BasicConstants.PATTERN">{{name}} is invalid. </span>
+      <span role="alert" *ngIf="item===BasicConstants.INVALID_EMAIL">{{name}} email is invalid. </span>
     </div>
   </ng-container>
   }
