@@ -33,7 +33,6 @@ import { debounceTime, Subject } from 'rxjs';
     CommonModule,
     HeaderPageComponent,
     ConfirmPopupModule,
-    ButtonComponent,
     TranslateModule
   ],
   providers: [ConfirmationService],
