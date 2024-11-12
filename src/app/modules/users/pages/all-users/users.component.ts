@@ -53,6 +53,7 @@ export class UsersComponent {
   listOfNationalities: ILookup[] = [];
   listOfCountries: ILookup[] = [];
   enableSearchInTime$ = new Subject<string>();
+  lang:string = ''
 
   private store = inject(Store<{ users: UsersState }>);
   private _userServices = inject(UserService);
@@ -71,6 +72,8 @@ export class UsersComponent {
 
       this.getAllData();
       this.getAllLookups();
+
+      this.lang = this._translate.currentLang;
    
   }
 
@@ -99,7 +102,11 @@ export class UsersComponent {
   deletePopUp(acceptData: { event: Event; row: any }): void {
     this._confirmationService.confirm({
       target: acceptData.event.target as EventTarget,
-      message: `Do You Want to Delete ${acceptData.row.fullName} ?`,
+      message: `${
+        this.lang === 'en'
+          ? `Are you sure you want to Delete ${acceptData.row.fullName} `
+          : `هل انت متاكد من حذف ${acceptData.row.fullName} `
+      }`,
       icon: 'pi pi-info-circle text-red-500',
       accept: () => {
         this.deleteItem(acceptData.row);
@@ -121,11 +128,18 @@ export class UsersComponent {
     });
   }
 
-  togglePopUp(acceptData: { event: Event; row: any }): void {
+  togglePopUp(acceptData: { event: Event; row: IUser }): void {
     this._confirmationService.confirm({
       target: acceptData.event.target as EventTarget,
-      message: `Do You Want ${(acceptData.row.isActive ? ' DeActivate ' : ' Activate ') + acceptData.row.fullName} ?`,
-      icon: 'pi pi-exclamation-triangle ',
+      message: ` ${
+        this.lang === 'en'
+          ? `Are you sure you want to ${
+              acceptData.row.isActive ? 'Deactivate' : 'Activate'
+            } ${acceptData.row.fullName} `
+          : ` هل انت متاكد من  ${acceptData.row.isActive ? 'عدم تفعيل' : 'تفعيل'} ${
+              acceptData.row.fullName
+            }`
+      }`,      icon: 'pi pi-exclamation-triangle ',
       accept: () => {
         this.toggleItem(acceptData.row);
       },
