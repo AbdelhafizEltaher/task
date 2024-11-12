@@ -6,6 +6,10 @@ i take 10h to build this app which support two design system light and dark and 
 
 if any bug appeared with you i hope this not affect on my skills ..... i need only from u to look at my code and arch that i build it 
 
+
+important Notes : -
+
+filter and search is not founded in back end but i add this logic to code and it working very well
  
 login conditionals : admin as userName || 123456 as Password
 
